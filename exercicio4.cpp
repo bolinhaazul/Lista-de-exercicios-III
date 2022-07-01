@@ -2,57 +2,72 @@
 #include <cstring>
 using namespace std;
 int i;
-struct Endereco{
+struct Endereco
+{
     char rua[50];
-    int numero;
+    string numero;
     char bairro[10];
     char cidade[20];
 };
-typedef struct Dados{
+typedef struct Dados
+{
     Endereco endereco;
     char nome[30];
-    int telefone;
-};
-typedef struct Posicao{
-    Dados dados;
+    string telefone;
 };
 
-int main(){
-    Posicao posicao[5];
+int main()
+{
+    Dados dados[5];
     char aux[30];
-    for(int i=0 ; i<5 ; i++){
+    for (int i = 0; i < 5; i++)
+    {
         cout << "Digite o nome: ";
-        cin.getline(posicao[i].dados.nome,30);
+        cin.getline(dados[i].nome, 30);
         cout << "Digite o telefone: ";
-        cin>>posicao[i].dados.telefone;
-        cout << "Rua: "<<endl;
+        cin >> dados[i].telefone;
+        cout << "Rua: " << endl;
         cin.ignore();
-        cin.getline(posicao[i].dados.endereco.rua,50);
-        cout << "Numero: "<<endl;
-        cin>>posicao[i].dados.endereco.numero;
-        cout << "Bairro: "<<endl;
+        cin.getline(dados[i].endereco.rua, 50);
+        cout << "Numero: " << endl;
+        cin >> dados[i].endereco.numero;
+        cout << "Bairro: " << endl;
         cin.ignore();
-        cin.getline(posicao[i].dados.endereco.bairro,10);
-        cout << "Cidade: "<<endl;
-        cin.getline(posicao[i].dados.endereco.cidade,20);
+        cin.getline(dados[i].endereco.bairro, 10);
+        cout << "Cidade: " << endl;
+        cin.getline(dados[i].endereco.cidade, 20);
     }
-    for(int i=0 ; i<5 ; i++){
-        for(int j=1 ; j<5 ; j++){
-            if(strcmp(posicao[j-1].dados.nome, posicao[j].dados.nome)>0){
-                strcpy(aux, posicao[j-1].dados.nome);
-                strcpy(posicao[j-1].dados.nome, posicao[j].dados.nome);
-                strcpy(posicao[j].dados.nome, aux);
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 1; j < 5; j++)
+        {
+            if (strcmp(dados[j - 1].nome, dados[j].nome) > 0)
+            {
+                strcpy(aux, dados[j - 1].nome);
+                strcpy(dados[j - 1].nome, dados[j].nome);
+                strcpy(dados[j].nome, aux);
+                strcpy(aux, dados[j - 1].endereco.rua);
+                strcpy(dados[j - 1].endereco.rua, dados[j].endereco.rua);
+                strcpy(aux, dados[j - 1].endereco.numero);
+                strcpy(dados[j-1].endereco.numero, dados[j].endereco.numero)
+                strcpy(aux, dados[j - 1].endereco.bairro);
+                strcpy(dados[j - 1].endereco.bairro, dados[j].endereco.bairro);
+                strcpy(aux, dados[j - 1].endereco.cidade);
+                strcpy(dados[j - 1].endereco.cidade, dados[j].endereco.cidade);
+                strcpy(aux, dados[j-1].telefone);
+                strcpy(dados[j-1].telefone, dados[j].telefone)
             }
         }
     }
-    cout<<"-x-x-x-x-x-x-x-x-x DADOS EM ORDEM ALFABETICA -x-x-x-x-x-x-x-x-x"<<endl;
-    for(int i=0 ; i<5 ; i++){
-        cout << "Nome: "<<posicao[i].dados.nome<<endl;
-        cout << "Telefone: "<<posicao[i].dados.telefone<<endl;
-        cout << "Rua: "<<posicao[i].dados.endereco.rua<<endl;
-        cout << "Numero: "<<posicao[i].dados.endereco.numero<<endl;
-        cout << "Bairro: "<<posicao[i].dados.endereco.bairro<<endl;
-        cout << "Cidade: "<<posicao[i].dados.endereco.cidade<<endl;
+    cout << "-x-x-x-x-x-x-x-x-x DADOS EM ORDEM ALFABETICA -x-x-x-x-x-x-x-x-x" << endl;
+    for (int i = 0; i < 5; i++)
+    {
+        cout << "Nome: " << dados[i].nome << endl;
+        cout << "Telefone: " << dados[i].telefone << endl;
+        cout << "Rua: " << dados[i].endereco.rua << endl;
+        cout << "Numero: " << dados[i].endereco.numero << endl;
+        cout << "Bairro: " << dados[i].endereco.bairro << endl;
+        cout << "Cidade: " << dados[i].endereco.cidade << endl;
     }
     return 0;
 }
